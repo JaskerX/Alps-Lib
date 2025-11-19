@@ -1,6 +1,7 @@
 package com.alpsbte.alpslib.utils.item;
 
 import com.alpsbte.alpslib.utils.AlpsUtils;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -14,9 +15,9 @@ import static net.kyori.adventure.text.format.TextDecoration.ITALIC;
 
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class LoreBuilder {
-    public static final TextComponent LORE_COMPONENT = empty().decoration(ITALIC, TextDecoration.State.FALSE);
-    public static int MAX_LORE_LINE_LENGTH = 40;
-    private final ArrayList<TextComponent> lore = new ArrayList<>();
+    public static final Component LORE_COMPONENT = empty().decoration(ITALIC, TextDecoration.State.FALSE);
+    public static final int MAX_LORE_LINE_LENGTH = 40;
+    private final ArrayList<Component> lore = new ArrayList<>();
 
     public LoreBuilder addLine(String line) {
        addLine(line, false);
@@ -79,7 +80,7 @@ public class LoreBuilder {
         return this;
     }
 
-    public ArrayList<TextComponent> build() {
+    public List<Component> build() {
         return lore;
     }
 

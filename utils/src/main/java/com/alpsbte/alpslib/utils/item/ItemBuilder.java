@@ -1,6 +1,6 @@
 package com.alpsbte.alpslib.utils.item;
 
-import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
@@ -48,21 +48,21 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItemBuilder setName(TextComponent component) {
+    public ItemBuilder setName(Component component) {
         itemMeta.displayName(LORE_COMPONENT.append(component));
         return this;
     }
 
-    @Deprecated
-    public ItemBuilder setLore(@NotNull List<String> lore) {
-        List<TextComponent> components = new ArrayList<>();
+    @Deprecated(since = "1.1.0", forRemoval = true)
+    public ItemBuilder setStringLore(@NotNull List<String> lore) {
+        List<Component> components = new ArrayList<>();
         for (String loreStr : lore)
             components.add(LORE_COMPONENT.append(LegacyComponentSerializer.legacySection().deserialize(loreStr)));
         itemMeta.lore(components);
         return this;
     }
 
-    public ItemBuilder setLore(ArrayList<TextComponent> components) {
+    public ItemBuilder setLore(@NotNull List<Component> components) {
         itemMeta.lore(components);
         return this;
     }
@@ -99,10 +99,10 @@ public class ItemBuilder {
      */
     public ItemBuilder setItemModel(Object model) {
 
-        if (model instanceof Integer) {
-            setItemModel((int)model);
-        } else if (model instanceof String) {
-            setItemModel((String)model);
+        if (model instanceof Integer m) {
+            setItemModel(m);
+        } else if (model instanceof String s) {
+            setItemModel(s);
         }
         return this;
     }
