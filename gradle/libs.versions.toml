@@ -4,7 +4,7 @@
 [versions]
 com-alpsbte-canvas = "1.3" # https://mvn.alps-bte.com/#browse/browse:alps-bte:com%2Falpsbte%2Fcanvas
 com-arcaniax-headdatabase-api = "1.3.2" # https://github.com/Arcaniax-Development/HeadDatabase-API/releases
-com-github-cryptomorin-xseries = "13.0.0" # https://github.com/CryptoMorin/XSeries/releases
+com-github-cryptomorin-xseries = "13.6.0" # https://github.com/CryptoMorin/XSeries/releases
 com-github-decentsoftware-eu-decentholograms = "2.8.17" # https://github.com/DecentSoftware-eu/DecentHolograms/releases
 com-github-mwiede-jsch = "2.27.2" # https://github.com/mwiede/jsch/releases
 com-sk89q-worldedit-worldedit-bukkit = "7.3.9" # https://maven.enginehub.org/repo/com/sk89q/worldedit/worldedit-bukkit/
@@ -21,6 +21,7 @@ org-junit-jupiter-junit-jupiter-engine = "5.13.3" # https://central.sonatype.com
 org-junit-platform-junit-platform-runner = "1.13.3" # https://central.sonatype.com/artifact/org.junit.platform/junit-platform-runner
 org-mariadb-jdbc-mariadb-java-client = "3.5.4" # https://central.sonatype.com/artifact/org.mariadb.jdbc/mariadb-java-client
 com-intellectualsites-bom-bom-newest = "1.55" # Ref: https://github.com/IntellectualSites/bom
+lombok = "8.14"
 
 [libraries]
 com-alpsbte-canvas = { module = "com.alpsbte:canvas", version.ref = "com-alpsbte-canvas" }
@@ -43,5 +44,4 @@ org-mariadb-jdbc-mariadb-java-client = { module = "org.mariadb.jdbc:mariadb-java
 com-intellectualsites-bom-bom-newest = { module = "com.intellectualsites.bom:bom-newest", version.ref = "com-intellectualsites-bom-bom-newest" }
 
 [plugins]
-gradleup-shadow      = { id = "com.gradleup.shadow",    version = "9.0.0-rc1" }
-freefair-lombok      = { id = "io.freefair.lombok",    version = "8.14" }
+freefair-lombok = { id = "io.freefair.lombok",    version.ref = "lombok" }
