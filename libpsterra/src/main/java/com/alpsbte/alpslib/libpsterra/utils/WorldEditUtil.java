@@ -54,8 +54,8 @@ public class WorldEditUtil {
      * Get the minimum point of a region <br>
      * <br>
      * WorldEdit History: <br>
-     * < 1.12: {@link Region#getMinimumPoint()} -> {@code com.sk89q.worldedit.Vector} <br>
-     * > 1.13: {@link Region#getMinimumPoint()} -> {@link com.sk89q.worldedit.math.BlockVector3} <br>
+     * {@literal <} 1.12: {@link Region#getMinimumPoint()} -> {@code com.sk89q.worldedit.Vector} <br>
+     * {@literal >} 1.13: {@link Region#getMinimumPoint()} -> {@link com.sk89q.worldedit.math.BlockVector3} <br>
      * <br>
      * @param region Region to get the minimum point from
      * @return Minimum point of the region
@@ -98,8 +98,8 @@ public class WorldEditUtil {
      * Get the maximum point of a region <br>
      * <br>
      * WorldEdit History: <br>
-     * < 1.12: {@link Region#getMinimumPoint()} -> {@code com.sk89q.worldedit.Vector} <br>
-     * > 1.13: {@link Region#getMinimumPoint()} -> {@link com.sk89q.worldedit.math.BlockVector3} <br>
+     * {@literal <} 1.12: {@link Region#getMinimumPoint()} -> {@code com.sk89q.worldedit.Vector} <br>
+     * {@literal >} 1.13: {@link Region#getMinimumPoint()} -> {@link com.sk89q.worldedit.math.BlockVector3} <br>
      * <br>
      * @param region Region to get the maximum point from
      * @return Maximum point of the region
@@ -143,8 +143,8 @@ public class WorldEditUtil {
      * Check if a region contains a point <br>
      * <br>
      * WorldEdit History: <br>
-     * < 1.12: {@code Region.contains(com.sk89q.worldedit.Vector)} <br>
-     * > 1.13: {@link Region#contains(BlockVector3)} <br>
+     * {@literal <} 1.12: {@code Region.contains(com.sk89q.worldedit.Vector)} <br>
+     * {@literal >} 1.13: {@link Region#contains(BlockVector3)} <br>
      * <br>
      * @param region Region to check
      * @param point Point to check
@@ -178,8 +178,8 @@ public class WorldEditUtil {
      * Get the center of a region <br>
      * <br>
      * WorldEdit History: <br>
-     * < 1.12: {@link Region#getCenter()} -> {@code com.sk89q.worldedit.Vector} <br>
-     * > 1.13: {@link Region#getCenter()} -> {@link com.sk89q.worldedit.math.Vector3} <br>
+     * {@literal <} 1.12: {@link Region#getCenter()} -> {@code com.sk89q.worldedit.Vector} <br>
+     * {@literal >} 1.13: {@link Region#getCenter()} -> {@link com.sk89q.worldedit.math.Vector3} <br>
      * <br>
      * @param region Region to get the center from
      * @return Center of the region
@@ -213,8 +213,8 @@ public class WorldEditUtil {
      * Get the origin of a clipboard <br>
      * <br>
      * WorldEdit History: <br>
-     * < 1.12: {@code Clipboard.getOrigin() -> {@code com.sk89q.worldedit.Vector} <br>
-     * > 1.13: {@code Clipboard.getOrigin() -> {@link com.sk89q.worldedit.math.BlockVector3} <br>
+     * {@literal <} 1.12: {@code Clipboard.getOrigin()} -> {@code com.sk89q.worldedit.Vector} <br>
+     * {@literal >} 1.13: {@code Clipboard.getOrigin()} -> {@link com.sk89q.worldedit.math.BlockVector3} <br>
      * <br>
      * @param clipboard Clipboard to get the origin from
      * @return Origin of the clipboard
@@ -258,7 +258,7 @@ public class WorldEditUtil {
      * Get the points of a region <br>
      * <br>
      * WorldEdit History: <br>
-     * < 1.12: {@code Polygonal2DRegion.getPoints()} -> {@code List<com.sk89q.worldedit.Vector>} <br>
+     * {@literal <} 1.12: {@code Polygonal2DRegion.getPoints()} -> {@code List<com.sk89q.worldedit.Vector>} <br>
      * > 1.13: {@code Polygonal2DRegion.getPoints()} -> {@link List<com.sk89q.worldedit.math.BlockVector2>} <br>
      * <br>
      * @param region Region to get the points from
@@ -290,8 +290,8 @@ public class WorldEditUtil {
      * Polygonize a region <br>
      * <br>
      * WorldEdit History: <br>
-     * < 1.12: {@code Region.polygonize(int)} -> {@code List<com.sk89q.worldedit.Vector>} <br>
-     * > 1.13: {@code Region.polygonize(int)} -> {@link List<com.sk89q.worldedit.math.BlockVector2>} <br>
+     * {@literal <} 1.12: {@code Region.polygonize(int)} -> {@code List<com.sk89q.worldedit.Vector>} <br>
+     * {@literal >} 1.13: {@code Region.polygonize(int)} -> {@link List<com.sk89q.worldedit.math.BlockVector2>} <br>
      * <br>
      * @param region Region to polygonize
      * @param maxPoints Maximum amount of points
@@ -323,8 +323,8 @@ public class WorldEditUtil {
      * Create a Polygonal2DRegion <br>
      * <br>
      * WorldEdit History: <br>
-     * < 1.12: {@code CylinderRegion.CylinderRegion(world, com.sk89q.worldedit.Vector, com.sk89q.worldedit.Vector2D, int, int)} <br>
-     * > 1.13: {@link CylinderRegion#CylinderRegion(com.sk89q.worldedit.world.World, com.sk89q.worldedit.math.BlockVector3, com.sk89q.worldedit.math.Vector2, int, int)} <br>
+     * {@literal <} 1.12: {@code CylinderRegion.CylinderRegion(world, com.sk89q.worldedit.Vector, com.sk89q.worldedit.Vector2D, int, int)} <br>
+     * {@literal >} 1.13: {@link CylinderRegion#CylinderRegion(com.sk89q.worldedit.world.World, com.sk89q.worldedit.math.BlockVector3, com.sk89q.worldedit.math.Vector2, int, int)} <br>
      * <br>
      * @param region Region to create the Polygonal2DRegion from
      * @param center Center of the region
