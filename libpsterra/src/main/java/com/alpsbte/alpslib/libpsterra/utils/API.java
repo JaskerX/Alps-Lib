@@ -43,8 +43,6 @@ public class API {
     /**
      * Sends an asynchronous get request to an API
      * @param url The URL to perform a get request on
-     * @return The result of the get request as a string
-     * @throws IOException When something went wrong performing the get request
      */
     public static void getAsync(String url, ApiResponseCallback callback) {
         Request request = new Request.Builder()

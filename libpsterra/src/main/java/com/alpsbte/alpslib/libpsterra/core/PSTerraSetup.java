@@ -53,7 +53,7 @@ public class PSTerraSetup {
      * @param psInitializer The plugin initializer that can be used by other plugins to initialize the plugin
      * @throws Exception If an error occurs during setup
      */
-    public static PSTerraSetup setupPlugin(@NotNull JavaPlugin javaPlugin, @NotNull String version, @NotNull PSInitializer psInitializer) throws RuntimeException, ConfigNotImplementedException, ClassNotFoundException {
+    public static PSTerraSetup setupPlugin(@NotNull JavaPlugin javaPlugin, @NotNull String version, @NotNull PSInitializer psInitializer) throws Exception {
         plugin = javaPlugin;
 
         boolean consoleOutput = psInitializer.isDefaultInitializer() || psInitializer.isConsoleOutput();

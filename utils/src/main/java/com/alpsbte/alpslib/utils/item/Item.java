@@ -30,7 +30,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * The following dependencies are required:
  * <ol>
  *     <li><b>Bukkit API</b></li>
- *     <li><b>HeadDatabaseAPI</b></li> (removed for BuildTeamTools)
+ *     <li><b>HeadDatabaseAPI (removed for BuildTeamTools)</b></li>
  *     <li><b>XMaterial</b> from <a href="https://github.com/CryptoMorin/XSeries">XSeries</a></li>
  * </ol>
  *
