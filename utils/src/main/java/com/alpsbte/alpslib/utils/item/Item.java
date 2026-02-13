@@ -1,5 +1,6 @@
 package com.alpsbte.alpslib.utils.item;
 
+import com.alpsbte.alpslib.utils.ChatHelper;
 import com.alpsbte.alpslib.utils.head.AlpsHeadUtils;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.profiles.builder.XSkull;
@@ -80,10 +81,11 @@ import java.util.concurrent.ConcurrentHashMap;
  * <br><br><b>Material Conversion Utilities</b>:
  * <br>Utility methods to convert between {@link Material}, {@link XMaterial}, and {@link ItemStack} representations:
  * <br>• {@link #fromUniqueMaterialString(String)} – Converts a namespaced string to an {@link ItemStack}.
- * <br>• {@link #getUniqueMaterialString(ItemStack)} – Gets the namespaced key of an {@link ItemStack}'s material.
+ * <br>• {@link #getUniqueMaterialString(ItemStack)} – Gets the namespaced key of an {@link ItemStack}'s material  (e.g., minecraft:gravel).
+ * <br>• {@link #getUniqueMaterialString(ItemStack)} – Gets the enum name of an {@link ItemStack}'s material (e.g., GRAVEL).
  * <br>• {@link #getUniqueMaterialString(XMaterial)} – Gets the namespaced key of an {@link XMaterial}.
  * <br>• {@link #getUniqueMaterialString(XMaterial[])} – Gets a comma-separated list of namespaced keys from multiple {@link XMaterial}s.
- * <br>• {@link #convertStringToXMaterial(String)} – Converts a string to an {@link XMaterial}, fallback to Bukkit {@link Material} if needed.
+ * <br>• {@link #convertStringToXMaterial(String)} – Converts a string to an {@link XMaterial}, fallback to Bukkit {@link Material} if needed  (keyed string).
  * <br>• {@link #convertXMaterialToWEBlockType(XMaterial)} – Converts an {@link XMaterial} to a WorldEdit {@link BlockType}.
  * <br>• {@link #createStringFromItemStringList(List)} – Converts a list of material strings to a comma-separated namespaced material string.
  * <br>• {@link #createStringFromItemStringList(String...)} – Converts an array of material strings to a comma-separated namespaced material string.
@@ -94,7 +96,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * <br>• {@link #createPlayerHead(String, String, List)}
  * <br>• {@link #createPlayerHead(String, String, int, List)}
  *
- * @version 1.3.4
+ * @version 1.3.5
  * @author MineFact, Zoriot
  */
 @SuppressWarnings("unused")
@@ -406,11 +408,23 @@ public class Item {
         return null;
     }
 
+    /**
+     * Gets the namespaced key of an {@link ItemStack}'s material (e.g., minecraft:gravel).
+     */
     public static @NonNull String getUniqueMaterialString(@NonNull ItemStack item) {
+        return item.getType().getKey().asString();
+    }
+
+    /**
+     * Get the Uppercase Material String, e.g. GRAVEL.
+     */
+    public static @NonNull String getUppercaseMaterialString(@NonNull ItemStack item) {
         return item.getType().name();
     }
 
-
+    /**
+     * Gets the namespaced key of an {@link XMaterial}.
+     */
     public static String getUniqueMaterialString(XMaterial material) {
         if (material == null)
             return null;
@@ -422,6 +436,9 @@ public class Item {
         return getUniqueMaterialString(item);
     }
 
+    /**
+     * Gets a comma-separated list of namespaced keys from multiple {@link XMaterial}s.
+     */
     public static String getUniqueMaterialString(XMaterial[] materials) {
         if (materials == null || materials.length == 0)
             return null;
@@ -434,13 +451,19 @@ public class Item {
         return s.toString();
     }
 
+    /**
+     * Converts a string to an {@link XMaterial}, fallback to Bukkit {@link Material} if needed (keyed string).
+     */
     public static @org.jspecify.annotations.Nullable XMaterial convertStringToXMaterial(String materialString) {
         XMaterial material;
 
-        if (XMaterial.matchXMaterial(materialString).isPresent())
-            material = XMaterial.matchXMaterial(materialString).get();
+        var possibleXMaterial = XMaterial.matchXMaterial(materialString);
+        if (possibleXMaterial.isPresent())
+            material = possibleXMaterial.get();
         else {
+            ChatHelper.logDebug("Failed to match XMaterial for string: " + materialString + ", trying Bukkit Material match as fallback.");
             Material mat = Material.matchMaterial(materialString);
+            ChatHelper.logDebug("Bukkit Material match result: " + mat);
 
             if (mat != null)
                 material = XMaterial.matchXMaterial(mat);
@@ -455,6 +478,8 @@ public class Item {
         String mat = getUniqueMaterialString(material);
         BlockType bt;
 
+        if (mat == null || mat.isEmpty()) return null;
+
         if (mat.contains("minecraft:"))
             bt = BlockTypes.parse(mat);
         else
@@ -463,6 +488,9 @@ public class Item {
         return bt;
     }
 
+    /**
+     * Converts a list of material strings to a comma-separated namespaced material string.
+     */
     public static @NonNull String createStringFromItemStringList(@NonNull List<String> items) throws IllegalArgumentException {
         StringBuilder s = new StringBuilder();
 
@@ -470,10 +498,13 @@ public class Item {
             if (XMaterial.matchXMaterial(items.get(i)).isPresent()) {
                 var curItem = items.get(i);
                 var material = XMaterial.matchXMaterial(curItem);
-                XMaterial xMaterial = material.get();
-                ItemStack item = xMaterial.parseItem();
+                ItemStack item = null;
+                if (material.isPresent()) {
+                    XMaterial xMaterial = material.get();
+                    item = xMaterial.parseItem();
+                }
 
-                if (item == null)
+                if (material.isEmpty() || item == null)
                     continue;
 
                 if (i > 0) s.append(",");
@@ -482,6 +513,9 @@ public class Item {
         return s.toString();
     }
 
+    /**
+     * Converts an array of material strings to a comma-separated namespaced material string.
+     */
     public static @NonNull String createStringFromItemStringList(String... items) throws IllegalArgumentException {
         return createStringFromItemStringList(new ArrayList<>(Arrays.asList(items)));
     }
