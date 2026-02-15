@@ -30,19 +30,19 @@ public class DatabaseConnection {
     public static void initializeDatabase(@NotNull DatabaseSection config, boolean enableLogging) throws ClassNotFoundException {
         Class.forName("org.mariadb.jdbc.Driver");
         HikariConfig hikariConfig = new HikariConfig();
-        hikariConfig.setJdbcUrl(config.getUrl() + config.getDbName() + "?allowMultiQueries=true");
-        hikariConfig.setUsername(config.getUsername());
-        hikariConfig.setPassword(config.getPassword());
+        hikariConfig.setJdbcUrl(config.url() + config.dbName() + "?allowMultiQueries=true");
+        hikariConfig.setUsername(config.username());
+        hikariConfig.setPassword(config.password());
         hikariConfig.addDataSourceProperty("cachePrepStmts", "true");
         hikariConfig.addDataSourceProperty("prepStmtCacheSize", "250");
         hikariConfig.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
         hikariConfig.addDataSourceProperty("useServerPrepStmts", "true");
-        hikariConfig.setMaxLifetime(config.getMaxLifetime());
-        hikariConfig.setConnectionTimeout(config.getConnectionTimeout());
-        hikariConfig.setKeepaliveTime(config.getKeepaliveTime());
-        hikariConfig.setMaximumPoolSize(config.getMaximumPoolSize());
-        hikariConfig.setLeakDetectionThreshold(config.getLeakDetectionThreshold());
-        hikariConfig.setPoolName(config.getPoolName());
+        hikariConfig.setMaxLifetime(config.maxLifetime());
+        hikariConfig.setConnectionTimeout(config.connectionTimeout());
+        hikariConfig.setKeepaliveTime(config.maxLifetime());
+        hikariConfig.setMaximumPoolSize(config.maximumPoolSize());
+        hikariConfig.setLeakDetectionThreshold(config.leakDetectionThreshold());
+        hikariConfig.setPoolName(config.poolName());
 
         hikari = new HikariDataSource(hikariConfig);
 
