@@ -28,7 +28,6 @@ public class DatabaseConnection {
      * @param config          The database configuration
      */
     public static void initializeDatabase(@NotNull DatabaseSection config, boolean enableLogging) throws ClassNotFoundException {
-        Class.forName("org.mariadb.jdbc.Driver");
         HikariConfig hikariConfig = new HikariConfig();
         hikariConfig.setJdbcUrl(config.url() + config.dbName() + "?allowMultiQueries=true");
         hikariConfig.setUsername(config.username());
@@ -43,6 +42,7 @@ public class DatabaseConnection {
         hikariConfig.setMaximumPoolSize(config.maximumPoolSize());
         hikariConfig.setLeakDetectionThreshold(config.leakDetectionThreshold());
         hikariConfig.setPoolName(config.poolName());
+        hikariConfig.setDriverClassName("org.mariadb.jdbc.Driver");
 
         hikari = new HikariDataSource(hikariConfig);
 

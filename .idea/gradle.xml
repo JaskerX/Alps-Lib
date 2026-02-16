@@ -7,9 +7,9 @@
         <compositeConfiguration>
           <compositeBuild compositeDefinitionSource="SCRIPT">
             <builds>
-              <build path="/var/home/Zoriot/IdeaProjects/Alps-Lib/buildSrc" name="buildSrc">
+              <build path="$PROJECT_DIR$/buildSrc" name="buildSrc">
                 <projects>
-                  <project path="/var/home/Zoriot/IdeaProjects/Alps-Lib/buildSrc" />
+                  <project path="$PROJECT_DIR$/buildSrc" />
                 </projects>
               </build>
             </builds>
@@ -18,13 +18,13 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="/var/home/Zoriot/IdeaProjects/Alps-Lib" />
-            <option value="/var/home/Zoriot/IdeaProjects/Alps-Lib/buildSrc" />
-            <option value="/var/home/Zoriot/IdeaProjects/Alps-Lib/hologram" />
-            <option value="/var/home/Zoriot/IdeaProjects/Alps-Lib/io" />
-            <option value="/var/home/Zoriot/IdeaProjects/Alps-Lib/libpsterra" />
-            <option value="/var/home/Zoriot/IdeaProjects/Alps-Lib/npc" />
-            <option value="/var/home/Zoriot/IdeaProjects/Alps-Lib/utils" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/hologram" />
+            <option value="$PROJECT_DIR$/io" />
+            <option value="$PROJECT_DIR$/libpsterra" />
+            <option value="$PROJECT_DIR$/npc" />
+            <option value="$PROJECT_DIR$/utils" />
           </set>
         </option>
       </GradleProjectSettings>
