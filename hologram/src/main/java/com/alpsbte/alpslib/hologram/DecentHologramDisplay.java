@@ -13,6 +13,8 @@ import eu.decentsoftware.holograms.api.holograms.HologramLine;
 import eu.decentsoftware.holograms.api.holograms.HologramPage;
 import eu.decentsoftware.holograms.event.HologramClickEvent;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -27,12 +29,21 @@ import org.jetbrains.annotations.Nullable;
 public abstract class DecentHologramDisplay implements DecentHologramContent {
     public static List<DecentHologramDisplay> activeDisplays = new ArrayList<>();
 
+    @Getter
     protected final HashMap<UUID, Hologram> holograms = new HashMap<>();
     private ClickAction clickListener;
+
+    @Getter
     private final String id;
+
+    @Getter
     private Location location;
+
+    @Setter
+    @Getter
     private boolean isEnabled;
 
+    @Getter
     private static Plugin plugin;
 
     /**
@@ -49,7 +60,7 @@ public abstract class DecentHologramDisplay implements DecentHologramContent {
      * @param plugin Plugin in use of this library.
      * @see DecentHologramDisplay#registerPlugin(Plugin)
      */
-    public static void registerPlugin(Plugin plugin) {
+    public static void registerPlugin(@NotNull Plugin plugin) {
         DecentHologramDisplay.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(new DecentHologramListener(), plugin);
     }
@@ -175,24 +186,6 @@ public abstract class DecentHologramDisplay implements DecentHologramContent {
         activeDisplays.remove(this);
     }
 
-    /**
-     * Get the identifier from when this hologram is first constructed.
-     *
-     * @return ID as String.
-     */
-    public String getId() {
-        return this.id;
-    }
-
-    /**
-     * Get the hologram location.
-     *
-     * @return hologram location.
-     */
-    public Location getLocation() {
-        return this.location;
-    }
-
     public void setLocation(Location newPosition) {
         this.location = newPosition;
         for (UUID playerUUID : holograms.keySet()) {
@@ -203,22 +196,6 @@ public abstract class DecentHologramDisplay implements DecentHologramContent {
     }
 
     /**
-     * Is this hologram enabled.
-     *
-     * @return Is enabled.
-     */
-    public boolean isEnabled() {
-        return this.isEnabled;
-    }
-
-    /**
-     * Force set the hologram enabled or disabled.
-     *
-     * @param isEnabled If false, the hologram will not be created in any way.
-     */
-    public void setEnabled(boolean isEnabled) {this.isEnabled = isEnabled;}
-
-    /**
      * Get hologram instance mapped in this display.
      *
      * @param playerUUID Focused player.
@@ -226,15 +203,6 @@ public abstract class DecentHologramDisplay implements DecentHologramContent {
      */
     public Hologram getHologram(UUID playerUUID) {
         return this.holograms.get(playerUUID);
-    }
-
-    /**
-     * Get all the mapped hologram in this display.
-     *
-     * @return HashMap of Hologram by a player UUID.
-     */
-    public HashMap<UUID, Hologram> getHolograms() {
-        return this.holograms;
     }
 
     /**
@@ -272,7 +240,7 @@ public abstract class DecentHologramDisplay implements DecentHologramContent {
      * @param line    The index of the line to replace or add.
      * @param content The content to set at the line, either an {@link ItemStack} or {@link String}.
      */
-    protected static void replaceLine(HologramPage page, int line, Object content) {
+    protected static void replaceLine(@NotNull HologramPage page, int line, Object content) {
         try {
             if (page.getLines().size() < line + 1) {
                 // Add new line with the content
@@ -322,7 +290,7 @@ public abstract class DecentHologramDisplay implements DecentHologramContent {
      * @param id The id first used to construct a new DecentHologramDisplay
      * @return The hologram assigned to id.
      */
-    public static DecentHologramDisplay getById(String id) {
+    public static @NotNull DecentHologramDisplay getById(String id) {
         return activeDisplays.stream().filter(holo -> holo.getId().equals(id)).findFirst().orElse(null);
     }
 

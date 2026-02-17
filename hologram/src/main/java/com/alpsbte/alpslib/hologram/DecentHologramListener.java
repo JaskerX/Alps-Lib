@@ -1,6 +1,8 @@
 package com.alpsbte.alpslib.hologram;
 
 import eu.decentsoftware.holograms.event.HologramClickEvent;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
@@ -45,8 +47,18 @@ public class DecentHologramListener implements Listener {
     public void onPlayerChangedWorldEvent(PlayerChangedWorldEvent event) {
         for (DecentHologramDisplay display : DecentHologramDisplay.activeDisplays) {
             if (display.getLocation() == null) return;
-            if (Objects.requireNonNull(display.getLocation().getWorld()).getName().equals(event.getFrom().getName())) display.remove(event.getPlayer().getUniqueId());
-            else if (display.getLocation().getWorld().getName().equals(event.getPlayer().getWorld().getName())) display.create(event.getPlayer());
+            try {
+                World world = display.getLocation().getWorld();
+                if (Objects.requireNonNull(world).getName().equals(event.getFrom().getName())) display.remove(event.getPlayer().getUniqueId());
+                else if (world.getName().equals(event.getPlayer().getWorld().getName())) display.create(event.getPlayer());
+            } catch (IllegalArgumentException e) {
+
+                Bukkit.getLogger().warning("DecentHologram: Failed to change world for player " + event.getPlayer().getName()
+                        + ", from World: " + event.getFrom().getName() + " Removing faulty display: " + display.getTitle(event.getPlayer().getUniqueId())
+                + " Footer:" + display.getFooter(event.getPlayer().getUniqueId()) +  " Error: " + e.getMessage()
+                + " Please report this error to the plugin author.");
+                display.delete();
+            }
         }
 
     }
