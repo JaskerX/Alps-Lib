@@ -27,9 +27,18 @@ public class DatabaseConnection {
      *
      * @param config          The database configuration
      */
-    public static void initializeDatabase(@NotNull DatabaseSection config, boolean enableLogging) throws ClassNotFoundException {
+    public static void initializeDatabase(@NotNull DatabaseSection config, boolean enableLogging) throws RuntimeException {
+        initializeDatabase(config, enableLogging, "");
+    }
+
+    /**
+     * Initializes the connection pool with the given configuration data.
+     *
+     * @param config          The database configuration
+     */
+    public static void initializeDatabase(@NotNull DatabaseSection config, boolean enableLogging, String urlParameter) throws RuntimeException {
         HikariConfig hikariConfig = new HikariConfig();
-        hikariConfig.setJdbcUrl(config.url() + config.dbName() + "?allowMultiQueries=true");
+        hikariConfig.setJdbcUrl(config.url() + config.dbName() + "?allowMultiQueries=true" + (urlParameter.isEmpty() ? "" : "&" + urlParameter));
         hikariConfig.setUsername(config.username());
         hikariConfig.setPassword(config.password());
         hikariConfig.addDataSourceProperty("cachePrepStmts", "true");
