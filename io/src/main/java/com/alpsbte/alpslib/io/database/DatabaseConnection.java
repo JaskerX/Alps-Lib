@@ -27,7 +27,7 @@ public class DatabaseConnection {
      *
      * @param config          The database configuration
      */
-    public static void initializeDatabase(@NotNull DatabaseSection config, boolean enableLogging) throws RuntimeException {
+    public static void initializeDatabase(@NotNull DatabaseSection config, boolean enableLogging) {
         initializeDatabase(config, enableLogging, "");
     }
 
@@ -36,7 +36,7 @@ public class DatabaseConnection {
      *
      * @param config          The database configuration
      */
-    public static void initializeDatabase(@NotNull DatabaseSection config, boolean enableLogging, String urlParameter) throws RuntimeException {
+    public static void initializeDatabase(@NotNull DatabaseSection config, boolean enableLogging, @NotNull String urlParameter) {
         HikariConfig hikariConfig = new HikariConfig();
         hikariConfig.setJdbcUrl(config.url() + config.dbName() + "?allowMultiQueries=true" + (urlParameter.isEmpty() ? "" : "&" + urlParameter));
         hikariConfig.setUsername(config.username());
@@ -47,7 +47,7 @@ public class DatabaseConnection {
         hikariConfig.addDataSourceProperty("useServerPrepStmts", "true");
         hikariConfig.setMaxLifetime(config.maxLifetime());
         hikariConfig.setConnectionTimeout(config.connectionTimeout());
-        hikariConfig.setKeepaliveTime(config.maxLifetime());
+        hikariConfig.setKeepaliveTime(config.keepaliveTime());
         hikariConfig.setMaximumPoolSize(config.maximumPoolSize());
         hikariConfig.setLeakDetectionThreshold(config.leakDetectionThreshold());
         hikariConfig.setPoolName(config.poolName());
