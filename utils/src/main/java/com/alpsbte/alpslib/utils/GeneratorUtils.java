@@ -137,7 +137,6 @@ import java.util.concurrent.CompletableFuture;
  * <br>• {@link #getMaxHeight(List)}
  *
  * <br><br><b>Preparation Check Functions</b>:
- * <br>• {@link #checkIfSchematicBrushIsInstalled(Player)}
  * <br>• {@link #checkForNoWorldEditSelection(Player)}
  * <br>• {@link #checkForBrickOutline(Block[][][], Player, WikiDocumented)}
  * <br>• {@link #checkForWoolBlock(Block[][][], Player, WikiDocumented)}
@@ -196,8 +195,8 @@ public class GeneratorUtils {
 
     /** Checks if the plugin "SchematicBrush" is enabled. */
     private static boolean isSchematicBrushEnabled(){
-        return getPlugin().getServer().getPluginManager().isPluginEnabled("SchematicBrush");
-    }        // e.g., "1.21.4"
+        return getPlugin().getServer().getPluginManager().isPluginEnabled("SchematicBrushReborn");
+    }
 
 
     /** Checks if the server version is 1.12. */
@@ -1813,7 +1812,7 @@ public class GeneratorUtils {
     public static boolean checkIfSchematicBrushIsInstalled(Player p){
         // Check if WorldEdit is enabled
         if (!isSchematicBrushEnabled()) {
-            p.sendMessage("§cPlease install Schematic Brush to use this tool. You can ask the server administrator to install it.");
+            p.sendMessage("§cPlease install Schematic Brush Reborn v1 to use this tool. You can ask the server administrator to install it.");
 
             return false;
         }
