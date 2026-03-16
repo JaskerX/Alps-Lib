@@ -1,4 +1,4 @@
-package com.alpsbte.alpslib.geo;
+package com.alpsbte.alpslib.geo.rgc;
 
 /* Copyright (c) 2015, Erich Schubert
  * Ludwig-Maximilians-Universität München
@@ -88,7 +88,7 @@ public class ReverseGeocoder implements AutoCloseable {
      * Constructor.
      *
      * @param name Index file name
-     * @throws IOException
+     * @throws IOException [MISSING]
      */
     public ReverseGeocoder(String name) throws IOException {
         this.filename = new File(name);
@@ -98,7 +98,7 @@ public class ReverseGeocoder implements AutoCloseable {
     /**
      * Reopen the index file.
      *
-     * @throws IOException
+     * @throws IOException [MISSING]
      */
     public void reopen() throws IOException {
         file = new RandomAccessFile(filename, "r");
@@ -254,6 +254,7 @@ public class ReverseGeocoder implements AutoCloseable {
     }
 
     /**
+     * [MISSING]
      * @return The number of entries in the geocoder.
      */
     public int getNumberOfEntries() {
