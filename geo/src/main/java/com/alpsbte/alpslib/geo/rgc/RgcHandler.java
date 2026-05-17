@@ -1,6 +1,6 @@
 package com.alpsbte.alpslib.geo.rgc;
 
-import com.alpsbte.alpslib.geo.logger.LoggerAdapter;
+import org.slf4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 public class RgcHandler {
 
     private final File locationDataFile;
-    private final LoggerAdapter logger;
+    private final Logger logger;
     private final boolean localizedNames;
 
     /**
@@ -27,7 +27,7 @@ public class RgcHandler {
      * @param localizedNames Whether localized names (column 1) should be used instead of international names (column 2)
      * @see <a href="https://github.com/kno10/reversegeocode">Used GitHub repo with data files and examples</a>
      */
-    public RgcHandler(File locationDataFile, LoggerAdapter logger, boolean localizedNames) {
+    public RgcHandler(File locationDataFile, Logger logger, boolean localizedNames) {
         this.locationDataFile = locationDataFile;
         this.logger = logger;
         this.localizedNames = localizedNames;

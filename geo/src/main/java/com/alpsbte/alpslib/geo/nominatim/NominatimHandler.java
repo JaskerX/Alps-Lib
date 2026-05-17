@@ -1,8 +1,8 @@
 package com.alpsbte.alpslib.geo.nominatim;
 
 
-import com.alpsbte.alpslib.geo.logger.LoggerAdapter;
 import org.json.JSONObject;
+import org.slf4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,7 +20,7 @@ import java.util.Map;
  */
 public class NominatimHandler {
 
-    private final LoggerAdapter logger;
+    private final Logger logger;
     private final String userAgent;
     private final int zoom;
 
@@ -29,7 +29,7 @@ public class NominatimHandler {
      * @param logger The logger to use
      * @param userAgent Your application's User Agent for the Nominatim http request.
      */
-    public NominatimHandler(LoggerAdapter logger, String userAgent) {
+    public NominatimHandler(Logger logger, String userAgent) {
         this(logger, userAgent, 10);
     }
 
@@ -39,7 +39,7 @@ public class NominatimHandler {
      * @param userAgent Your application's User Agent for the Nominatim http request.
      * @param zoom The zoom for the returned data's detail
      */
-    public NominatimHandler(LoggerAdapter logger, String userAgent, int zoom) {
+    public NominatimHandler(Logger logger, String userAgent, int zoom) {
         this.logger = logger;
         this.userAgent = userAgent;
         this.zoom = zoom;
